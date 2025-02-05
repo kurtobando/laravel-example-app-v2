@@ -9,3 +9,9 @@ COPY --chown=www-data:www-data . /var/www/html
 
 # Drop privileges back to www-data
 USER www-data
+
+# Install dependencies
+composer install --no-dev --optimize-autoloader
+
+# Post install
+php artisan storage:link
