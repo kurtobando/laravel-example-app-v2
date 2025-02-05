@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  php:
+    build: ./Dockerfile
+
+    # https://serversideup.net/open-source/docker-php/docs/reference/environment-variable-specification
+    environment:
+      PHP_MEMORY_LIMIT: '512M'
+      PHP_MAX_EXECUTION_TIME: '300'
+
+    ports:
+      - 8080:8080
+
+    # mount the current directory so we can see the changes right away instead of building the image
+    volumes:
+      - .:/var/www/html
