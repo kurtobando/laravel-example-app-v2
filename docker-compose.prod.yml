@@ -5,6 +5,7 @@ services:
 
     # https://serversideup.net/open-source/docker-php/docs/reference/environment-variable-specification
     environment:
+      SSL_MODE: 'off'
       PHP_OPCACHE_ENABLE: '1'
       PHP_MEMORY_LIMIT: '512M'
       PHP_MAX_EXECUTION_TIME: '300'
