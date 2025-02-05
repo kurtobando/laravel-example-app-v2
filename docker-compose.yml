@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   php:
-    build: ./Dockerfile
+    build: .
 
     # https://serversideup.net/open-source/docker-php/docs/reference/environment-variable-specification
     environment:
