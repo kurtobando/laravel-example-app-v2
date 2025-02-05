@@ -11,7 +11,5 @@ COPY --chown=www-data:www-data . /var/www/html
 USER www-data
 
 # Install dependencies
-composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader
 
-# Post install
-php artisan storage:link
