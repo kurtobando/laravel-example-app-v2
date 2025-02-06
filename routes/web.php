@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/hello-world', function () {
-    return 'hello-world';
+    return 'hello-world, more changes';
 });
 
 Route::get('/phpinfo', function () {
