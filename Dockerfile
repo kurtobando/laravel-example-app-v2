@@ -4,6 +4,11 @@ FROM serversideup/php:8.2-fpm-nginx
 # Set root as initial user to remove permission errors
 # USER root
 
+# Set env variables from serversideup image
+ENV AUTORUN_ENABLED=true
+ENV PHP_MEMORY_LIMIT=512M
+ENV PHP_MAX_EXECUTION_TIME=300
+
 # Set the working directory inside the container
 WORKDIR /var/www/html
 
@@ -19,4 +24,3 @@ EXPOSE 8080
 # Drop privileges back to www-data
 USER www-data
 
-CMD ["php artisan storage:link", "php artisan migrate", "php-fpm"]
