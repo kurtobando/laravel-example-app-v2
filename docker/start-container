@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+sleep 8
+
+echo "Database is up. Running migrations..."
+php artisan migrate --force
+
+# Start the default application command
+# exec "$@"
+exec php-fpm

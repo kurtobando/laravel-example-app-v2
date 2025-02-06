@@ -1,16 +1,60 @@
 version: '3.8'
 services:
   php:
-    build: .
-
-    # https://serversideup.net/open-source/docker-php/docs/reference/environment-variable-specification
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
     environment:
       PHP_MEMORY_LIMIT: '512M'
       PHP_MAX_EXECUTION_TIME: '300'
-
     ports:
       - 8080:8080
-
-    # mount the current directory so we can see the changes right away instead of building the image
     volumes:
       - .:/var/www/html
+    networks:
+      - development
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - development_mysql:/var/lib/mysql
+    networks:
+      - development
+
+  redis:
+    image: redis:7.4.2
+    ports:
+      - 6379:6379
+    volumes:
+      - development_redis:/data
+    networks:
+      - development
+
+  mailpit:
+    image: axllent/mailpit:v1.22
+    ports:
+      - 8025:8025
+      - 1025:1025
+    networks:
+      - development
+
+volumes:
+  development_mysql:
+    driver: local
+  development_redis:
+    driver: local
+
+networks:
+  development:
+    driver: bridge
+
