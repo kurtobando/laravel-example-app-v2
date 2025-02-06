@@ -19,5 +19,4 @@ EXPOSE 8080
 # Drop privileges back to www-data
 USER www-data
 
-#
-CMD php artisan storage:link && php artisan migrate && php-fpm
+CMD ["php artisan storage:link", "php artisan migrate", "php-fpm"]
