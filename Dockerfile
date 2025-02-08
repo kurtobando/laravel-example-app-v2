@@ -1,5 +1,5 @@
 ########################################################## Stage 1: Build frontend with Node.js
-FROM node:20 AS build
+FROM node:23.7.0 AS build
 
 WORKDIR /app
 COPY . /app
